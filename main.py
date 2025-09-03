@@ -10,6 +10,9 @@ def show(numbers:list) -> None:
         print(number,end=' ')
     print()
 
+
+
+# wymagane !!!
 def buble_sort(numbers:list) -> list:
 
     for j in range(len(numbers)-1):
@@ -19,7 +22,7 @@ def buble_sort(numbers:list) -> list:
 
     show(numbers)
 
-def schemat_wyborowy(numbers:list) -> list:
+def selection_sort(numbers:list) -> list:
     for j in range(len(numbers)-1):
         p = j
         for i in range(j+1,len(numbers)):
@@ -27,6 +30,20 @@ def schemat_wyborowy(numbers:list) -> list:
                 p=i
         numbers[p], numbers[j] = numbers[j], numbers[p]
     show(numbers)
+# ---------------------------------------------------------------------------------
+
+
+def wstawianie(numbers:list) -> list:
+    for j in range(len(numbers)-2, -1, -1):
+        x = numbers[j]
+        i = j+1
+        while i < len(numbers) and x > numbers[i]:
+            numbers[i-1] = numbers[i]
+            i = i + 1
+        numbers[i-1] = x
+    return numbers
+
+
 
 
 
@@ -35,7 +52,9 @@ if __name__ == "__main__":
     numbers = read_numbers(30)
     print("przed sortowaniem")
     show(numbers)
-    # print("po sortowamiu bombelkowym")
-    # buble_sort(numbers)
+    print("po sortowamiu bombelkowym")
+    buble_sort(numbers[:])
     print("po sortowamiu tym drugim")
-    schemat_wyborowy(numbers)
+    selection_sort(numbers[:])
+    print("po wstawiania")
+    show(wstawianie(numbers[:]))
